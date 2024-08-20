@@ -16,6 +16,19 @@ class Employee {
 }
 
 public class P1946_NewEmployee {
+    public static int screening(Employee[] employees, int N) {
+        int result = 1;    // 서류 순위 1등 => 무조건 합격
+        int highestRank = employees[0].interviewRank;
+        for (int i = 1; i < N; i++) {   // 서류 순위 2등부터 시작
+            if (employees[i].interviewRank < highestRank) { // 인터뷰 순위가 더 선순위인 경우
+                result++;
+                highestRank = employees[i].interviewRank;
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -38,16 +51,9 @@ public class P1946_NewEmployee {
 
             Arrays.sort(employees, Comparator.comparingInt(o -> o.documentRank));
 
-            int cnt = 1;    // 서류 순위 1등 => 무조건 합격
-            int highestRank = employees[0].interviewRank;
-            for (int i = 1; i < N; i++) {   // 서류 순위 2등부터 시작
-                if (employees[i].interviewRank < highestRank) { // 인터뷰 순위가 더 선순위인 경우
-                    cnt++;
-                    highestRank = employees[i].interviewRank;
-                }
-            }
+            int result = screening(employees, N);
 
-            System.out.println(cnt);
+            System.out.println(result);
         }
     }
 }
