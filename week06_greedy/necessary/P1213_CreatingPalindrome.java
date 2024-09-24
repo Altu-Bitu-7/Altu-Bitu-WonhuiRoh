@@ -38,9 +38,8 @@ public class P1213_CreatingPalindrome {
             // 홀수 개인 알파벳 감지
             if (alphabetCnt % 2 != 0) {
                 // oddAlphabet 점검; 이전에 이미 oddAlphabet 이 발견된 경우 => return false / 그 외의 경우 => oddAlphabet 으로 설정
-                if (oddAlphabet >= 'A' && oddAlphabet <= 'Z') {
+                if (oddAlphabet >= 'A' && oddAlphabet <= 'Z')
                     return false;
-                }
 
                 oddAlphabet = key;
             }
@@ -60,11 +59,8 @@ public class P1213_CreatingPalindrome {
             // 짝수 (ex.6) => 0~2
             // 홀수 (ex.5) => 0~1
         StringBuilder pre = new StringBuilder();
-        for (Character k : keySet) {
-            for (int i = 0; i < alphabetCounts.get(k) / 2; i++) {
-                pre.append(k);
-            }
-        }
+        for (Character k : keySet)
+            pre.append(String.valueOf(k).repeat(alphabetCounts.get(k) / 2));
 
         palindrome += pre;
 
